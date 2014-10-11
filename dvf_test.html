@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8">
+        <title> dashboard </title>
+		<style type="text/css"> 
+		body{
+			padding:0px;
+			margin:0px;
+			width:950px;
+			height:600px;
+		}
+		.chart{
+			float:left;
+		}
+		</style>
+    </head>
+    <body>
+         <div id="chart" style="width:950px;height:600px;" class="chart"></div>
+        <script src="http://cdataportal.sh.ctripcorp.com:9999/DVF/CData-1.0.js"></script>
+        <script>
+		window.onload = function(){
+			CData().dashboard({
+			env:'product',
+    			bases: {
+					"startTime": "2014-10-10 11:53:00",
+					"endTime": "2014-10-10 12:58:00",
+					"interval": "1m",
+					"metric": "ubt.ol.jserror",
+					"maxcount": 100,
+					"filters":{
+						"pid":["100101991"]
+					}
+				},
+				"namespace": null,
+				"statistics": "count",
+				start: function() {},
+				end: function() {
+					setTimeout(function(){
+						document.title='ok';
+					},1000)
+				}
+
+			})
+			.line({
+				id: "chart",
+				params: {
+					xAxis: {
+						type: "datetime"
+					},
+					title: {
+						text: "line展示（多条线）"
+					}
+				}
+			})
+		}	
+		
+        </script>
+		
+		
+    </body>
+</html>
